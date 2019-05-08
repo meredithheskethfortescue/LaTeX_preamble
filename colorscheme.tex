@@ -1,0 +1,124 @@
+% !TeX encoding = UTF-8
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Dark/Light-Theme for Presentations using LaTeX-Beamer
+%
+% Colors are set aiming for high contrast and being able
+% to be used on a light or dark background.
+% Referencing Ethan Schoonover's Solarized Theme this 
+% theme is optimized to work on beamers too.
+% This is necessary due to the fact that most beamers 
+% aren't able to display an adequate contrast to use the
+% Solarized-Theme.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% DEFINE COLORS: -----------------------------------------------------------------------
+\definecolor{color_title}			{HTML}{C0C0C0}% light gray		C0C0C0
+\definecolor{color_titleBar}		{HTML}{C0C0C0}% dark gray		4B515A
+\definecolor{color_cite}			{HTML}{808080}% dark gray		808080
+\definecolor{color_blocktitle}		{HTML}{C0FF32}% light green		C0FF32
+\definecolor{color_content}			{HTML}{FFFFFF}% light gray		F2F2F2, then E5E5E5
+\definecolor{color_background}		{HTML}{14181F}% dark bluegray	1E2631, then 161C24, then 14181F
+\definecolor{color_hypertext}		{HTML}{0563C1}% blue			0563C1
+
+\definecolor{color_highlight_blue}	{HTML}{5B9BD5}% light blue		5B9BD5
+\definecolor{color_highlight_orange}{HTML}{ED7D31}% orange			ED7D31
+\definecolor{color_highlight_magenta}{HTML}{d33682}% magenta
+\definecolor{color_highlight_green}	{HTML}{82ff82}% green 3fff3f
+\definecolor{color_highlight_lightgreen}{HTML}{C0FF32}% light green
+\definecolor{color_highlight_red}	{HTML}{dc322f}% red
+
+% Table background pastell colorscheme - calculated tetradic
+% for further information see https://www.sessions.edu/color-calculator/
+\definecolor{tab_tet_red}{HTML}{ffa09e}
+\definecolor{tab_tet_green}{HTML}{9effa3}
+\definecolor{tab_tet_yellow}{HTML}{fdff9e}
+
+
+% Macros for highlighted text
+\newcommand{\hlblue}		[1]{{\color{color_highlight_blue}#1}}
+\newcommand{\hlorange}		[1]{{\color{color_highlight_orange}#1}}
+\newcommand{\hlmagenta}		[1]{{\color{color_highlight_magenta}#1}}
+\newcommand{\hlgreen}		[1]{{\color{color_highlight_green}#1}}
+\newcommand{\hllightgreen}	[1]{{\color{color_highlight_lightgreen}#1}}
+\newcommand{\hlred}			[1]{{\color{color_highlight_red}#1}}
+
+
+
+% BEAMER SETTINGS: ---------------------------------------------------------------------
+\makeatletter
+\@ifclassloaded{beamer}{
+	\setbeamercolor{normal text}			{fg=color_content,bg=color_background}
+	\setbeamercolor{structure}				{fg=color_title}
+	
+	%\setbeamercolor{alerted text}			{fg=red!85!black}
+	
+	%\setbeamercolor{item projected}			{use=item,fg=black,bg=item.fg!35}
+	
+	%\setbeamercolor*{palette primary}		{use=structure,fg=structure.fg}
+	%\setbeamercolor*{palette secondary}		{use=structure,fg=structure.fg!95!black}
+	%\setbeamercolor*{palette tertiary}		{use=structure,fg=structure.fg!90!black}
+	%\setbeamercolor*{palette quaternary}	{use=structure,fg=structure.fg!95!black,bg=black!80}
+	
+	%\setbeamercolor*{framesubtitle}			{fg=white}
+	
+	\setbeamercolor*{block title}			{fg=color_blocktitle}
+	\setbeamercolor*{block body}			{parent=normal text}
+	%\setbeamercolor*{block title alerted}	{parent=alerted text,bg=black!15}
+	%\setbeamercolor*{block title example}	{parent=example text,bg=black!15}
+	
+	
+	\hypersetup{
+		colorlinks = true,
+		urlcolor = color_hypertext,
+		linkcolor = color_cite,
+		citecolor = color_cite,
+		citebordercolor = color_cite
+	}
+	% Set color of cite brackets
+	%\usepackage[numbers,sort&compress,square,comma]{natbib}
+	%\makeatletter
+	%\pretocmd{\NAT@open}{\begingroup\color{\@citecolor}}{}{}
+	%\apptocmd{\NAT@close}{\endgroup}{}{}
+	%\makeatother
+	
+	% Insert hrule under each frametitle
+	\setbeamertemplate{frametitle}
+	{
+		\vspace*{0.4em}
+		\insertframetitle\hfill\includegraphics*[height=1.15em]{../img/HSD_Marke_FB5_whiteFB.pdf}
+		\par\vskip-0.5em{\color{color_titleBar} \hrulefill}
+	}
+	
+	
+	% Page numbers in navigation bar
+	\addtobeamertemplate{navigation symbols}{}{%
+		\usebeamerfont{footline}%
+		\usebeamercolor[fg]{footline}%
+		\hspace{1em}%
+		\color{color_cite}\small\insertframenumber/\inserttotalframenumber
+	}
+	
+	
+	% Larger spaces between entries in itemize environments
+	\usepackage{enumitem}
+	\setitemize{itemsep=1.5em, partopsep=1em}
+	\setenumerate{itemsep=1em}
+	
+	
+	% Transparent itemize
+	\setbeamercovered{transparent}	% alternative: \setbeamercovered{invisible}
+	
+	
+	% ADDITIONAL PACKAGES
+	\usepackage{multimedia}
+	
+	% Keep serif font in math mode
+	\usefonttheme[onlymath]{serif}
+	
+}{}% endifclassloaded{beamer}
+
+
+
+% Bash-Command to invert all images:
+% for i in `ls *.png`; do convert -negate ${i%.*}.png ${i%.*}_inverted.png; done
