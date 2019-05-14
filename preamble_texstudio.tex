@@ -1,0 +1,200 @@
+% !TeX encoding = UTF-8
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
+% !BIB program = biber
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% --- GENERAL PURPOSE PREAMBLE ---
+% ---    Version 22.04.2018    ---
+% 
+% This document is meant to implement all needed packages
+% for any LaTeX document, regardless which document-class
+% is used. It can be included after defining the documentclass
+% via \input{./preamble_texliveonly.tex}.
+% 
+% Authors:
+% Martin Jonas & Raphael Stascheit;
+% Special thanks to: Fabian Büntig, Simon Christmann & Tobias Michel
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%MC German specifications: -------------------------------------------------------------
+\usepackage[utf8]{inputenc} 						% Direkte Eingabe von Umlauten
+\usepackage[english,ngerman]{babel} 				% Neue deutsche Rechtschreibung etc.
+
+\usepackage{longtable}
+\usepackage[official]{eurosym}
+\usepackage{textcomp}								% Necessary for degree symbol °
+\usepackage{gensymb}
+
+
+%MC Fonts: -----------------------------------------------------------------------------
+\usepackage{helvet} 								% Sans Serif (Serifless) %[scaled=.90]
+%\usepackage{sourcecodepro} 							% Monospace/Typewriter/Source-Code
+%\usepackage{AnonymousPro}							% Alternative Monospace/Typewriter/Source-Code
+\usepackage{mathptmx} 								% Math, Serif
+%\usepackage{garamondx}								% Serif
+
+\usepackage{CormorantGaramond}
+
+	% Weitere Schriftarten, die noch eingebunden werden müssen:
+	% Segoe UI, frutiger, Segoe UI --> Können nur mit LuaTeX kompiliert werden
+	% cochineal --> Weiterentwicklung der Schriftart "Crimson" mit Ligaturen. Funktioniert aus unerfindlichen Gründen nicht.
+	% CormorantGaramond --> schlankeres Garamond mit hübscherem "T"
+	
+%\renewcommand*\familydefault{\sfdefault} 			% Serifenlose Schrift als Standard gesetzt;
+
+\usepackage[T1]{fontenc} 							% Silbentrennung auch mit Umlauten
+\usepackage{soul}									% Sperrsatz via \so{text}
+\usepackage[normalem]{ulem}							% durchstreichen per \sout{},\xout{},\uwave{}
+
+
+%MC Math/Physics: ----------------------------------------------------------------------
+\usepackage{amsmath} 								% equation, equation*, align, align*, gather,
+													% gather*, flalign, flalign*, multline, multline*, alignat, alignat*.
+													% Dazu kommen Umgebungen, die für die Verwendung in diesen mathematischen Umgebungen vorgesehen sind: aligned, Bmatrix, bmatrix, cases, matrix, pmatrix, split, Vmatrix, vmatrix
+\usepackage{amssymb} 								% dieses Paket lädt amsfonts und erweitert es.
+													% Erleichtert normales Schreiben in Matheumgebungen
+%\usepackage{siunitx}
+\usepackage{mathtools}								% Extended math-symbols
+
+
+%MC Graphics: --------------------------------------------------------------------------
+\usepackage{graphicx} 								% \includegraphics[width=1.0\textwidth, angle=0.0, height=30px]{LoremIpsum.png}
+\usepackage{epstopdf} 								% Enables including *.eps files via converting to a *.pdf file
+\usepackage{svg}									% Enables including *.svg files via converting to a *.pdf file --> \includesvg{image} if Inkscape is installed
+
+\usepackage{placeins}
+\usepackage{caption,booktabs}
+\usepackage{float}	 								% Force figure with option [H] to be placed exactly here
+%\usepackage{picins} 					% Textumfluss um Bilder - parpic(breite,höhe)(x-offset,y-offset)[optionen][position]{Bildinhalt} §§§Replace me because I crash with a lot of packages and ain't part of Texlive
+\usepackage{wrapfig}								% 
+\usepackage{pdfpages}								% Implements particular pages of a *.pdf file -- \includepdf[pages={1,2,4-5}]{exmpl.pdf} ; for all pages use [pages=-]
+
+
+%MC Tables: ----------------------------------------------------------------------------
+%\usepackage{xcolor} 								% black, blue, brown, cyan, darkgray, gray, green,
+%\usepackage[table,xcdraw]{xcolor} 					% Coloured tables - black, cyan, green, orange, blue, darkgray, lightgray, white, red, yellow ...
+\usepackage{multirow}
+\usepackage{tabularx} 								% Table with variable width (Tabelle an Seitenbreite anpassen)
+\usepackage{array} 									% ?
+\usepackage{enumitem} 								% Customizable Enumerates/Itemizes: [label=\alph*)], [label=\arabic*.], [label=\Roman*.]
+\setlistdepth{9}									% Enable deeper nestet enumerations and itemizes
+\usepackage{colortbl}								% colored Table-lines & lines/rows
+\setlist[enumerate,1]{label=\arabic*.}
+\setlist[enumerate,2]{label*=\arabic*}
+\setlist[enumerate,3]{label*=\arabic*}
+\setlist[enumerate,4]{label*=\arabic*}
+\setlist[enumerate,5]{label*=\arabic*}
+\setlist[enumerate,6]{label*=\arabic*}
+\setlist[enumerate,7]{label*=\arabic*}
+\setlist[enumerate,8]{label*=\arabic*}
+\setlist[enumerate,9]{label*=\arabic*}
+\renewlist{enumerate}{enumerate}{9}
+\setlist[itemize,1]{label=$\bullet$}
+\setlist[itemize,2]{label=$\bullet$}
+\setlist[itemize,3]{label=$\bullet$}
+\setlist[itemize,4]{label=$\bullet$}
+\setlist[itemize,5]{label=$\bullet$}
+\setlist[itemize,6]{label=$\bullet$}
+\setlist[itemize,7]{label=$\bullet$}
+\setlist[itemize,8]{label=$\bullet$}
+\setlist[itemize,9]{label=$\bullet$}
+\renewlist{itemize}{itemize}{9}
+
+
+%MC /etc/: -----------------------------------------------------------------------------
+\usepackage{color}									% lightgray, lime, magenta, olive, orange, pink,
+													% purple, red, teal, violet, white, yellow
+\usepackage{verbatim}								% Environment to display Source Code without Syntax Highlighting
+\usepackage{listings}								% Environment to display Source Code with Syntax Highlighting for several Programming Languages
+\usepackage[prefix=solarized]{xcolor-solarized}		% Defines the colors of the Solarized Theme for Syntax Highlighting on light and dark backgrounds
+\lstset{basicstyle=\ttfamily\small,
+	literate=%
+	{Ö}{{\"O}}1
+	{Ä}{{\"A}}1
+	{Ü}{{\"U}}1
+	{ß}{{\ss}}2
+	{ü}{{\"u}}1
+	{ä}{{\"a}}1
+	{ö}{{\"o}}1
+	rulesepcolor=\color{solarized-base03},
+	numberstyle=\tiny\color{solarized-base01},
+	basicstyle=\footnotesize\ttfamily,
+	keywordstyle=\color{solarized-green},
+	stringstyle=\color{solarized-cyan}\ttfamily,
+	identifierstyle=\color{solarized-blue},
+	commentstyle=\color{solarized-base01},
+	emphstyle=\color{solarized-red}
+}
+
+\usepackage{url}
+\usepackage{tikz}									% Procedural drawing with TikZ
+\usetikzlibrary{external}							% Recompile TikZ drawings only if code changed in order to accelerates the compiling process significantly.
+\tikzexternalize									% Activate 
+\tikzsetexternalprefix{./img/}		% Set folder to save TikZ-drawings (must be created manually!)
+
+\usetikzlibrary{patterns}							% Fill polygons with stripes
+\usetikzlibrary{calc}								% coordinate calculation via math environment in TikZ
+\usepackage{pgfplots}								% TikZ-based 3D-Plot
+
+\usepackage{multicol}
+\usepackage{lipsum}
+\usepackage[multiple]{footmisc}                     % Multiple footnotes 
+\usepackage{todonotes}
+
+
+%MC Only if documentclass is scrartcl: -------------------------------------------------
+\makeatletter
+\@ifclassloaded{scrartcl}{
+	% if true:
+	\setkomafont{title}			{\rmfamily\bfseries\scshape}
+	\setkomafont{section}		{\rmfamily\Large\scshape}
+	\setkomafont{subsection}	{\rmfamily\large}
+	\setkomafont{subsubsection}	{\rmfamily}
+	\setkomafont{sectionentry}	{\rmfamily\bfseries}
+	\setkomafont{captionlabel}	{\bfseries}
+	
+	\usepackage[hidelinks]{hyperref}					% Includes Hypertext references; Option [hidelinks] hides the reference's highlighting
+	
+	\usepackage[left=3cm, right=2cm, top=2cm, bottom=2cm, footskip=26pt]{geometry}	% Margins for a thesis
+}{}
+\makeatother
+
+
+%MC Personal definitions: --------------------------------------------------------------
+\definecolor{penBlue}{HTML}{08005C}
+\definecolor{penGreen}{HTML}{006600}
+\definecolor{darkred}{HTML}{B30000}
+\newcommand{\realBigFont}{\fontsize{34}{\baselineskip}\mdseries\upshape}
+
+
+%MC Counters to number Exercises: ------------------------------------------------------
+\newcounter{CounterTutorium}
+\newcounter{CounterExercise}[CounterTutorium]
+
+\newcommand{\printexercisecounter}{
+	\hlorange{\textbf{\arabic{CounterTutorium}.\arabic{CounterExercise}}}
+}
+
+\newcommand{\exercise}{
+	\stepcounter{CounterExercise}
+	\printexercisecounter
+}
+%\setcounter{CounterTutorium}{5}
+\setcounter{CounterExercise}{0}
+
+
+%MC Document call ----------------------------------------------------------------------
+% Frequently used commands, called at the beginning of a document
+
+% BEFORE THE PREAMBLE:
+%\documentclass[12pt,a4paper,twoside]{scrartcl}	% Scientific Article
+
+
+% AFTER \begin{document}:
+%\hyphenation{words}								% Define correct hyphenation (Worttrennung) for unknown words
+%\setlength{\parindent}{0pt}						% kein Einrücken nach Absatz
+
+%\setlength{\mathindent}{1cm}					% Formeln eingerückt, aber nicht mittig -- braucht \usepackage[fleqn]{amsmath}
+
+
