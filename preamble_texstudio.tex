@@ -1,5 +1,6 @@
 % !TeX encoding = UTF-8
 % !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
+% !BIB program = biber
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % --- GENERAL PURPOSE PREAMLE (offline Version) ---
@@ -105,18 +106,15 @@
 
 
 % MISC
-\usepackage{color}                                  % lightgray, lime, magenta, olive, orange, pink,
-                                                    % purple, red, teal, violet, white, yellow
+\usepackage{color}                                  % standard color definitions
 \usepackage{url}
 \usepackage{tikz}                                   % Procedural drawing with TikZ
 \usetikzlibrary{external}                           % Recompile TikZ drawings only if code changed in order to accelerates the compiling process significantly.
 \tikzexternalize                                    % Activate 
 \tikzsetexternalprefix{./img/tikzexternalized/}     % Set folder to save TikZ-drawings (must be created manually!)
-
 \usetikzlibrary{patterns}                           % Fill polygons with stripes
 \usetikzlibrary{calc}                               % coordinate calculation via math environment in TikZ
 \usepackage{pgfplots}                               % TikZ-based 3D-Plot
-
 \usepackage{multicol}
 \usepackage{lipsum}
 \usepackage[multiple]{footmisc}                     % Multiple footnotes 
